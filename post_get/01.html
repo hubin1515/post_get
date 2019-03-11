@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>post和get的区别</title>
+	</head>
+	<body>
+		<script>
+			
+			
+		    function postMethod(){
+		
+		    var xhr = new createXHR();
+		
+		    var userName = document.getElementById("userName").value;
+		    var age = document.getElementById("age").value;
+		    var data = "userName=" + encodeURTComponent( userName ) + "&age=" + encodeURTComponent( age );
+		
+		    //不用担心缓存问题
+		    xhr.open( "post", "example.php", true );
+		
+		    //必须设置,否则服务器端收不到参数
+		    xhr.setRequestHeader( "Content-Type", "application/x-www-form-urlencoded" );
+		
+		    xhr.onreadystatechange = function(){
+		
+		        if( xhr.readyState = 4 && xhr.status == 200 ){
+		            document.getElementById("result").innerHTML = xhr.responseText;
+		        }
+		    }
+		
+		    //发送请求,要data数据
+		    xhr.send( data );
+		</script>
+	</body>
+</html>

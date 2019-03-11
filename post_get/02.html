@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			
+			var xhr = new createXHR();
+			
+			var userName = document.getElementById("userName").value;
+			var age = document.getElementById("age").value;
+			
+			//添加参数,以求每次访问不同的url,以避免缓存问题
+			xhr.open( "get", "example.php?userName=" + encodeURTComponent( userName ) + "&age=" + encodeURTComponent( age ) + "&random=" + Math.random(), true );
+			
+			xhr.onreadystatechange = function(){
+			
+			    if( xhr.readyState == 4 && xhr.status == 200 ){
+			
+			        document.getElementById("result").innerHTML = xhr.responseText;
+			    }
+			}
+			
+			//发送请求,参数为null
+			xhr.send( null );
+
+		</script>
+	</body>
+</html>
